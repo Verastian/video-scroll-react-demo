@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+/* ─── Class-based dark mode (Tailwind v4) ────────────────────────
+   Enables dark: variant when `.dark` is present on any ancestor. */
+@variant dark (&:where(.dark, .dark *));
+
+/* ─── Design tokens ──────────────────────────────────────────────
+   Fonts registered as Tailwind utilities: font-sans, font-serif   */
+@theme {
+  --font-family-sans: 'Inter', sans-serif;
+  --font-family-serif: 'Playfair Display', serif;
+}
+
+/* ─── Semantic color tokens (theme-aware via CSS vars) ───────────
+   Components reference these vars → one class to change both themes */
+:root {
+  --color-surface:       #ffffff;
+  --color-surface-muted: #f4f4f5;
+  --color-card:          #fafafa;
+  --color-foreground:    #1c1c1e;
+  --color-foreground-muted: rgba(20, 20, 22, 0.65);
+  --color-border:        rgba(20, 20, 22, 0.15);
+}
+
+.dark {
+  --color-surface:       #000000;
+  --color-surface-muted: #111111;
+  --color-card:          #0c0c0c;
+  --color-foreground:    #ffffff;
+  --color-foreground-muted: rgba(255, 255, 255, 0.65);
+  --color-border:        rgba(255, 255, 255, 0.1);
+}
+
+/* ─── Global base ────────────────────────────────────────────────  */
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-foreground);
+  font-family: var(--font-family-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
